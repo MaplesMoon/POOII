@@ -4,15 +4,17 @@ public class MatrixPrograms {
 
 	public static void main(String[] args) {
 	    Scanner sc = new Scanner(System.in);
-	    boolean flag = true;
+	    boolean flag = true;//Pra calcular a identidade
+	    int i, t;//Pra calcular a oposta
+	    int n=3;
 		System.out.println("Digite o numero de linhas");
 		int linha = sc.nextInt();
 		System.out.println("Digite o numero de colunas");
 		int coluna = sc.nextInt();
 
 		int[][] matriz = new int[linha][coluna];
-
-		for (int r = 0; r < linha; r++) {
+        int[][] oposta = new int[linha][coluna];
+        for (int r = 0; r < linha; r++) {
 			for (int c = 0; c < coluna; c++) {
 				System.out.println(String.format("Digite o [%d][%d] numero", r, c));
 				matriz[r][c] = sc.nextInt();
@@ -24,13 +26,13 @@ public class MatrixPrograms {
             System.out.println("Matriz nao eh identidade");    
         }    
           else {    
-            for(int i = 0; i < coluna; i++){    
+            for(int e = 0; e < coluna; e++){    
                 for(int j = 0; j < coluna; j++){    
-                  if(i == j && matriz[i][j] != 1){    
+                  if(e == j && matriz[e][j] != 1){    
                       flag = false;    
                       break;    
                   }    
-                  if(i != j && matriz[i][j] != 0){    
+                  if(e != j && matriz[e][j] != 0){    
                       flag = false;    
                       break;    
                   }    
@@ -43,13 +45,28 @@ public class MatrixPrograms {
                 System.out.println("Matriz nao eh identidade");
             	}
             
-      System.out.println("\n Matriz transposta: \n");
+      System.out.println("\n Matriz transposta: \n"); //Calculo da matriz transposta
     for (int l = 0; l < linha; l++) {
     for (int cl = 0; cl < coluna; cl++) {
      System.out.printf("\tM[%d][%d]: ", l + 1, cl + 1);
      System.out.printf("%d \t", matriz[linha][coluna]);
   }
+ 
   System.out.println();
+  
+   for (i=0; i<n; i++) {
+      for (t=0; t<n; t++) {
+        oposta[i][t] = -matriz[i][t];
+      }
+    }
+  System.out.printf("A Oposta sera:");
+    for (i=0; i<n; i++) {
+      System.out.printf("%da. linha: ", (i+1));
+      for (t=0; t<n; t++) {
+        System.out.printf("%d ", oposta[i][t]);
+      }
+      System.out.printf("\n");
+    }
  }
 	}
 }
