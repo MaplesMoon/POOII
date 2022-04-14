@@ -1,0 +1,55 @@
+import java.util.Scanner;
+
+public class MatrixPrograms {
+
+	public static void main(String[] args) {
+	    Scanner sc = new Scanner(System.in);
+	    boolean flag = true;
+		System.out.println("Digite o numero de linhas");
+		int linha = sc.nextInt();
+		System.out.println("Digite o numero de colunas");
+		int coluna = sc.nextInt();
+
+		int[][] matriz = new int[linha][coluna];
+
+		for (int r = 0; r < linha; r++) {
+			for (int c = 0; c < coluna; c++) {
+				System.out.println(String.format("Digite o [%d][%d] numero", r, c));
+				matriz[r][c] = sc.nextInt();
+			}
+		}
+		sc.close();
+
+		if(linha != coluna){    
+            System.out.println("Matriz nao eh identidade");    
+        }    
+          else {    
+            for(int i = 0; i < coluna; i++){    
+                for(int j = 0; j < coluna; j++){    
+                  if(i == j && matriz[i][j] != 1){    
+                      flag = false;    
+                      break;    
+                  }    
+                  if(i != j && matriz[i][j] != 0){    
+                      flag = false;    
+                      break;    
+                  }    
+                }    
+            }    
+                
+            if(flag)    
+                System.out.println("Matriz eh identidade");    
+            else    
+                System.out.println("Matriz nao eh identidade");
+            	}
+            
+      System.out.println("\n Matriz transposta: \n");
+    for (int l = 0; l < linha; l++) {
+    for (int cl = 0; cl < coluna; cl++) {
+     System.out.printf("\tM[%d][%d]: ", l + 1, cl + 1);
+     System.out.printf("%d \t", matriz[linha][coluna]);
+  }
+  System.out.println();
+ }
+	}
+}
