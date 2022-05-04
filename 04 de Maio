@@ -1,0 +1,77 @@
+import java.util.Random;
+
+public class main3{
+    static int[][] mat = new int[3][3]; //Matriz 3x3
+    static int i = -1;
+    public static void main(String[] args) {
+        Random matriz = new Random();
+
+    class SMatriz implements Runnable {
+    private final Somar s;
+
+    public SMatriz(Somar s) {
+        this.s = s;
+    }
+
+    public void run() {
+        i++;
+        s.somarmatriz(i);
+    }
+}
+                                                  //Preenchendo a matriz aleatoriamente
+            for (int i = 0; i < mat.length; i++) {
+            for (int j = 0; j < mat[i].length; j++) {
+                mat[i][j] = matriz.nextInt(10);
+            }
+        }
+
+        try {
+                                                         //Declarando classe de soma
+            Somar soma = new Somar(2, 2);
+
+                                                         //Threads
+            SMatriz thread1 = new SMatriz(soma);
+            SMatriz thread2 = new SMatriz(soma);
+            SMatriz thread3 = new SMatriz(soma);
+
+                                                         //Implementando threads
+            Thread t1 = new Thread(thread1);
+            Thread t2 = new Thread(thread2);
+            Thread t3 = new Thread(thread3);
+
+                                                        //Começando as threads
+            t1.start();
+            t2.start();
+            t3.start();
+
+            t1.join();
+            t2.join();
+            t3.join();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+class Somar extends main3{
+    private int i;
+    private int j;
+
+    public Somar(int i, int j) {
+        this.i = i;
+        this.j = j;
+    }
+
+                                                 //Funcao de soma
+        public synchronized void somarmatriz(int i) {
+        int soma = 0;
+        for (int j = 0; j < mat[i].length-1; j++) {
+        soma += mat[i][j];   
+         }
+        System.out.println("Soma da linha = " + soma);
+        soma=0;
+
+  
+    }
+
+}
