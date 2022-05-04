@@ -1,0 +1,58 @@
+import java.util.Random;
+
+public class main3{
+    public static void main(String[] args) {
+
+    class Piloto implements Runnable {
+    private final Carro s;
+    int i = -1;
+    public Piloto(Carro s) {
+        this.s = s;
+    }
+   @Override
+    public void run() {
+        i++;
+        Random rand = new Random();
+        int tempo = 0;
+        int t1=0, t2=0;
+        for (int j = 0; j < 4; j++) {
+        int volta=rand.nextInt(10);
+        tempo+=volta;
+         }
+        System.out.println("O tempo do piloto foi " + tempo);
+        }
+
+         public Carro getTempo(){
+         return s;
+     }
+
+}
+
+                                                         
+            Carro v = new Carro(1);
+
+                                                         //Threads
+            Piloto thread1 = new Piloto(v);
+            Piloto thread2 = new Piloto(v);
+
+                                                         //Implementando threads
+            Thread t1 = new Thread(thread1);
+            Thread t2 = new Thread(thread2);
+
+                                                        //Começando as threads
+            t1.start();
+            t2.start();
+            
+
+    }
+}
+
+class Carro extends main3{
+    public int i;
+    public int tempo;
+
+    public Carro(int i) {
+        this.i = i;
+    }
+
+}
